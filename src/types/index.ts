@@ -1,4 +1,4 @@
-export type ServiceId = 'automation' | 'web' | 'design' | 'marketing' | 'branding';
+export type ServiceId = 'automation' | 'web' | 'solutions' | 'design' | 'marketing' | 'branding';
 
 export interface WorkflowStep {
   id: string;

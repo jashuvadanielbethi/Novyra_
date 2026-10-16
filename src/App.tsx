@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { WhatWeOfferSection } from './components/WhatWeOfferSection';
-import { MetricsBar } from './components/MetricsBar';
-import { AutomationSection } from './components/AutomationSection';
 import { ServicesSection } from './components/ServicesSection';
-import { ProcessSection } from './components/ProcessSection';
-import { PrinciplesSection } from './components/PrinciplesSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ServiceId } from './types';
@@ -37,67 +31,40 @@ export default function App() {
     scrollToSection('contact');
   };
 
-  const handleExploreAutomation = () => {
-    scrollToSection('automation');
+  const handleExploreServices = () => {
+    scrollToSection('services');
   };
 
   return (
     <div className="min-h-screen bg-white text-[#0F172A] font-body selection:bg-blue-600/15 selection:text-slate-900 flex flex-col">
-      {/* 1. Header (Navbar matching design) */}
+      {/* 1. Header (Navbar) */}
       <Header onNavigateToContact={handleDiscussProject} />
 
-      {/* Main Page Flow */}
+      {/* Main Flow: Hero -> Services -> Selected Work -> Contact */}
       <main className="flex-1">
-        {/* 2. Hero Section (Modern Solutions for Real Business Growth + Desk Laptop Mockup) */}
+        {/* 1. Hero */}
         <Hero
           onStartProject={handleDiscussProject}
-          onExploreServices={() => scrollToSection('services-overview')}
+          onExploreServices={handleExploreServices}
         />
 
-        {/* 3. What We Offer (Our Services 4 Cards with Highlighted Automation & Cursive Note) */}
-        <WhatWeOfferSection
-          onSelectService={handleSelectServiceFromSection}
-          onExploreAutomationDemo={handleExploreAutomation}
-        />
-
-        {/* 4. Bottom Metrics Strip (3x Workflows, 60%+ Savings, Global Client Focus, starthub48@gmail.com) */}
-        <MetricsBar />
-
-        {/* 5. Flagship Automation Deep Interactive Simulator */}
-        <AutomationSection
-          onSelectAutomationCTA={() => handleSelectServiceFromSection('automation')}
-        />
-
-        {/* 6. Dedicated Interactive Demonstrations for All Services */}
+        {/* 2. Services (Primary: Business Automation + Secondary: Web, Digital Solutions, Branding, Marketing) */}
         <ServicesSection
           onSelectService={handleSelectServiceFromSection}
         />
 
-        {/* 7. How We Work (5-Step Process Timeline) */}
-        <ProcessSection
-          onContactClick={handleDiscussProject}
-        />
-
-        {/* 8. Why Novyra (Working Principles) */}
-        <PrinciplesSection />
-
-        {/* 9. Selected Work / Concept Demonstrations */}
+        {/* 3. Selected Work (Prototypes + Concise About + Clearly Labelled Testimonial Placeholder) */}
         <ProjectsSection
           onContactClick={handleDiscussProject}
         />
 
-        {/* 10. About Novyra */}
-        <AboutSection
-          onContactClick={handleDiscussProject}
-        />
-
-        {/* 11. Contact Section with Email Brief Generator */}
+        {/* 4. Contact (Formspree Inquiry Form + What Happens Next + starthub48@gmail.com) */}
         <ContactSection
           initialService={selectedService}
         />
       </main>
 
-      {/* 12. Studio Footer */}
+      {/* Studio Footer */}
       <Footer onNavigateToSection={scrollToSection} />
     </div>
   );

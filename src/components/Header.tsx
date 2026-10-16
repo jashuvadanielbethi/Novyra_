@@ -18,10 +18,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
 
       const sectionMap = [
         { elemId: 'home', navId: 'home' },
-        { elemId: 'services-overview', navId: 'services' },
-        { elemId: 'about', navId: 'about' },
-        { elemId: 'approach', navId: 'process' },
+        { elemId: 'services', navId: 'services' },
         { elemId: 'work', navId: 'work' },
+        { elemId: 'about', navId: 'about' },
         { elemId: 'contact', navId: 'contact' },
       ];
 
@@ -42,11 +41,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
   }, []);
 
   const navLinks = [
-    { label: 'Home', id: 'home', href: '#home' },
-    { label: 'Services', id: 'services', href: '#services-overview' },
+    { label: 'Services', id: 'services', href: '#services' },
+    { label: 'Selected Work', id: 'work', href: '#work' },
     { label: 'About', id: 'about', href: '#about' },
-    { label: 'Process', id: 'process', href: '#approach' },
-    { label: 'Work', id: 'work', href: '#work' },
     { label: 'Contact', id: 'contact', href: '#contact' },
   ];
 
@@ -71,13 +68,13 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3.5 shadow-[0_2px_14px_rgba(15,23,42,0.04)]'
-          : 'bg-white/70 backdrop-blur-xs py-5 border-b border-transparent'
+          : 'bg-white/75 backdrop-blur-xs py-4 border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-8">
           
-          {/* Zone 1: Logo & Spaced Logotype */}
+          {/* Logo & Descriptor */}
           <a
             href="#"
             onClick={(e) => handleLinkClick(e, 'home', '#')}
@@ -87,9 +84,9 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
             <NovyraLogo size="md" />
           </a>
 
-          {/* Zone 2: Navigation Links matching image */}
+          {/* Desktop Navigation */}
           <nav
-            className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-700"
+            className="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-700 uppercase tracking-wider font-mono"
             aria-label="Primary Navigation"
           >
             {navLinks.map((link) => {
@@ -100,35 +97,35 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.id, link.href)}
                   className={`relative py-1.5 whitespace-nowrap shrink-0 transition-colors ${
-                    isActive ? 'text-slate-950 font-semibold' : 'text-slate-600 hover:text-slate-950'
+                    isActive ? 'text-slate-950 font-bold' : 'text-slate-600 hover:text-slate-950'
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0052FF] rounded-full" />
                   )}
                 </a>
               );
             })}
           </nav>
 
-          {/* Zone 3: CTA "Let's Talk ->" button */}
+          {/* Primary CTA Button */}
           <div className="hidden md:flex items-center shrink-0">
             <button
               onClick={onNavigateToContact}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] active:bg-black rounded-lg transition-all whitespace-nowrap shadow-xs hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] active:bg-black rounded-lg transition-all whitespace-nowrap shadow-xs hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0052FF] focus-visible:ring-offset-2 group"
             >
-              <span>Let&apos;s Talk</span>
+              <span>Discuss Your Workflow</span>
               <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
-          {/* Mobile menu hamburger toggle */}
+          {/* Mobile menu toggle */}
           <div className="flex md:hidden items-center">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md"
+              className="p-2 text-slate-700 hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0052FF] rounded-md"
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
             >
@@ -149,12 +146,12 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
                 onClick={(e) => handleLinkClick(e, link.id, link.href)}
                 className={`text-base py-1.5 transition-colors border-b border-slate-100 flex items-center justify-between ${
                   currentActive === link.id
-                    ? 'text-blue-700 font-bold'
-                    : 'text-slate-800 hover:text-blue-600'
+                    ? 'text-[#0052FF] font-bold'
+                    : 'text-slate-800 hover:text-[#0052FF]'
                 }`}
               >
                 <span>{link.label}</span>
-                {currentActive === link.id && <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />}
+                {currentActive === link.id && <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF]" />}
               </a>
             ))}
             <div className="pt-2">
@@ -165,7 +162,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToContact, activeSecti
                 }}
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-white bg-[#0F172A] rounded-lg hover:bg-slate-800 transition-colors"
               >
-                <span>Let&apos;s Talk</span>
+                <span>Discuss Your Workflow</span>
                 <ArrowRight className="w-4 h-4 text-slate-300" />
               </button>
             </div>
