@@ -1,12 +1,14 @@
 import React from 'react';
 import { NovyraLogo } from './NovyraLogo';
 import { Mail, ArrowUpRight } from 'lucide-react';
+import { ServiceId } from '../types';
 
 interface FooterProps {
   onNavigateToSection: (sectionId: string) => void;
+  onSelectService: (serviceId: ServiceId) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToSection }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigateToSection, onSelectService }) => {
   const currentYear = 2026;
   const contactEmail = 'starthub48@gmail.com';
 
@@ -16,118 +18,145 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToSection }) => {
   };
 
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-14 pb-10 border-t border-slate-900">
+    <footer className="bg-[#0B0B0B] text-[#A9A49C] pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-10 border-b border-slate-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#302B24]">
           
           {/* Brand Column */}
-          <div className="md:col-span-5 space-y-3.5">
+          <div className="md:col-span-5 space-y-4">
             <a
-              href="#"
+              href="#home"
               onClick={(e) => scrollTo(e, 'home')}
               className="inline-block"
-              aria-label="Novyra Home"
+              aria-label="NOVYRA Home"
             >
-              <NovyraLogo size="md" lightMode={true} />
+              <NovyraLogo size="md" />
             </a>
 
-            <div className="text-xs font-mono text-slate-400">
-              Digital Solutions Studio
-            </div>
-
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm font-body">
-              Novyra helps businesses simplify repetitive work, connect their tools, and build practical digital solutions.
+            <p className="text-xs sm:text-sm text-[#A9A49C] leading-relaxed max-w-sm font-body">
+              NOVYRA is a digital agency and technology solutions studio specializing in business automation, custom web development, and thoughtful digital design.
             </p>
 
             <div className="pt-1">
               <a
-                href={`mailto:${contactEmail}?subject=Project%20Inquiry%20%E2%80%94%20Novyra`}
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-300 hover:text-white transition-colors"
+                href={`mailto:${contactEmail}?subject=Project%20Inquiry%20%E2%80%94%20NOVYRA`}
+                className="inline-flex items-center gap-2 text-xs font-mono text-[#F5F1E9] hover:text-[#C5A46D] transition-colors"
               >
-                <Mail className="w-3.5 h-3.5 text-blue-400" />
+                <Mail className="w-3.5 h-3.5 text-[#C5A46D]" aria-hidden="true" />
                 <span>{contactEmail}</span>
               </a>
             </div>
           </div>
 
-          {/* Studio Navigation Column */}
-          <div className="md:col-span-4 space-y-3">
-            <div className="text-xs font-mono uppercase text-slate-400 tracking-wider">
+          {/* Navigation Column */}
+          <div className="md:col-span-3 space-y-3.5">
+            <div className="text-xs font-mono uppercase tracking-[0.12em] text-[#F5F1E9]">
               Navigation
             </div>
-            <ul className="space-y-2 text-xs text-slate-300 font-body">
+            <ul className="space-y-2.5 text-xs font-body">
               <li>
-                <a
-                  href="#services"
-                  onClick={(e) => scrollTo(e, 'services')}
-                  className="hover:text-white transition-colors flex items-center justify-between group"
-                >
-                  <span>Services</span>
-                  <span className="text-[10px] font-mono text-blue-400 font-semibold">Primary: Automation</span>
+                <a href="#home" onClick={(e) => scrollTo(e, 'home')} className="hover:text-[#C5A46D] transition-colors">
+                  Home
                 </a>
               </li>
               <li>
-                <a
-                  href="#work"
-                  onClick={(e) => scrollTo(e, 'work')}
-                  className="hover:text-white transition-colors"
-                >
-                  Selected Work &amp; Prototypes
+                <a href="#about" onClick={(e) => scrollTo(e, 'about')} className="hover:text-[#C5A46D] transition-colors">
+                  About NOVYRA
                 </a>
               </li>
               <li>
-                <a
-                  href="#about"
-                  onClick={(e) => scrollTo(e, 'about')}
-                  className="hover:text-white transition-colors"
-                >
-                  About Novyra
+                <a href="#services" onClick={(e) => scrollTo(e, 'services')} className="hover:text-[#C5A46D] transition-colors">
+                  Services
                 </a>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  onClick={(e) => scrollTo(e, 'contact')}
-                  className="hover:text-white transition-colors"
-                >
-                  Contact &amp; Inquiries
+                <a href="#portfolio" onClick={(e) => scrollTo(e, 'portfolio')} className="hover:text-[#C5A46D] transition-colors">
+                  Portfolio
+                </a>
+              </li>
+              <li>
+                <a href="#contact" onClick={(e) => scrollTo(e, 'contact')} className="hover:text-[#C5A46D] transition-colors">
+                  Contact
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact / Inquiries Column */}
-          <div className="md:col-span-3 space-y-3">
-            <div className="text-xs font-mono uppercase text-slate-400 tracking-wider">
-              Start a Conversation
+          {/* Services Column */}
+          <div className="md:col-span-4 space-y-3.5">
+            <div className="text-xs font-mono uppercase tracking-[0.12em] text-[#F5F1E9]">
+              Services
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed font-body">
-              Tell us about your team&apos;s bottlenecks or upcoming web requirements.
-            </p>
-            <div className="pt-1">
+            <ul className="space-y-2.5 text-xs font-body">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onSelectService('automation')}
+                  className="hover:text-[#C5A46D] transition-colors text-left"
+                >
+                  Business &amp; Workflow Automation
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onSelectService('web')}
+                  className="hover:text-[#C5A46D] transition-colors text-left"
+                >
+                  Web Development
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onSelectService('solutions')}
+                  className="hover:text-[#C5A46D] transition-colors text-left"
+                >
+                  Digital Solutions
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onSelectService('design')}
+                  className="hover:text-[#C5A46D] transition-colors text-left"
+                >
+                  Branding &amp; Digital Design
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onSelectService('marketing')}
+                  className="hover:text-[#C5A46D] transition-colors text-left"
+                >
+                  Digital Marketing
+                </button>
+              </li>
+            </ul>
+
+            <div className="pt-3">
               <a
                 href="#contact"
                 onClick={(e) => scrollTo(e, 'contact')}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-[#0052FF] hover:bg-blue-600 rounded-lg transition-colors shadow-xs"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#C5A46D] hover:text-[#F5F1E9] transition-colors"
               >
-                <span>Discuss Your Workflow</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>Start a Project</span>
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Legal / Studio Attributes */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        {/* Bottom Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A9A49C]">
           <div>
-            &copy; {currentYear} Novyra. Digital Solutions Studio. All rights reserved.
+            &copy; {currentYear} NOVYRA. Digital Solutions Studio. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-mono">
-            <span>Built with precision &amp; care</span>
-            <span aria-hidden="true" className="text-slate-600">·</span>
-            <span>Direct partner collaboration</span>
+          <div className="text-xs font-mono">
+            Practical Digital Engineering · {contactEmail}
           </div>
         </div>
 

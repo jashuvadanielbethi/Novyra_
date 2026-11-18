@@ -1,22 +1,13 @@
 export type ServiceId = 'automation' | 'web' | 'solutions' | 'design' | 'marketing' | 'branding';
 
-export interface WorkflowStep {
+export interface WorkflowNode {
   id: string;
-  stage: 'trigger' | 'condition' | 'action' | 'result';
+  index: string;
+  stage: string;
   title: string;
-  description: string;
-  system: string;
-  statusLabel: string;
-  dataPayload?: Record<string, string>;
-}
-
-export interface WorkflowScenario {
-  id: string;
-  name: string;
-  category: string;
+  tool: string;
   summary: string;
-  steps: WorkflowStep[];
-  outcomeSummary: string;
+  detail: string;
 }
 
 export interface ProjectSpecimen {
@@ -25,7 +16,9 @@ export interface ProjectSpecimen {
   subtitle: string;
   category: string;
   clientType: string;
-  status: 'Concept Demonstration' | 'Studio Specimen' | 'Case Study';
+  status: 'Concept Demonstration' | 'Prototype';
+  image: string;
+  imageAlt: string;
   problem: string;
   approach: string;
   deliverables: string[];
@@ -35,10 +28,11 @@ export interface ProjectSpecimen {
 }
 
 export interface ContactFormData {
-  fullName: string;
+  name: string;
   email: string;
+  phone?: string;
   company?: string;
   service: ServiceId | 'general';
-  timeline?: string;
+  budget?: string;
   details: string;
 }
